@@ -21,10 +21,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::middleware()->prefix('admin.projects')->name('admin/projects')->group(function () {
+Route::middleware('auth')->prefix('admin/projects')->name('admin.projects.')->group(function () {
     Route::get('/', [AdminProjectController::class, 'index'])->name('index');
     Route::post('/', [AdminProjectController::class, 'store'])->name('store');
     Route::get('/create', [AdminProjectController::class, 'create'])->name('create');

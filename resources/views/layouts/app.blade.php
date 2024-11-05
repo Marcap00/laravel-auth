@@ -7,7 +7,12 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <link rel="icon" href="{{ asset('logomark.svg') }}" type="image/svg">
+
+    <title>
+        {{-- {{ config('app.name', 'Laravel ciao') }} --}}
+        @yield('title', 'Laravel Auth')
+    </title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">

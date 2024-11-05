@@ -5,8 +5,8 @@
         <div class="row row-cols-3">
             @forelse ($projects as $project)
             <div class="col mb-4">
-                <div class="card">
-                    <img src="{{"https://placehold.co/400x300?text=" . $project->title }}" alt="">
+                <div class="card border rounded-3">
+                    <img class="rounded-top-3" src="{{"https://placehold.co/400x300?text=" . $project->title }}" alt="">
                     <div class="card-body  text-center">
                         <h5 class="card-title"> {{ $project->author }} </h5>
                         <h6 class="card-subtitle mb-2 text-body-secondary"> {{ $project->title }} </h6>

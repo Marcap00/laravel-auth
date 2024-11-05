@@ -17,7 +17,7 @@ class ProjectController extends Controller
     {
         $projects = Project::all();
 
-        return view('admin.projects.index', compact('projects'));
+        return view('admin.projects.layouts.table', compact('projects'));
     }
 
     /**
@@ -76,5 +76,30 @@ class ProjectController extends Controller
         $project->delete();
 
         return redirect()->route('admin.projects.index');
+    }
+
+    /**
+     * Restore the specified resource from storage.
+     */
+    public function restore(string $id)
+    {
+        $restoredProject = Project::onlyTrashed()->findorFail($id);
+        $restoredProject->restore();
+        return redirect()->route('admin.projects.bin');
+    }
+
+    public function permanentDestroy(string $id)
+    {
+        $permanentDestroyedProject = Project::onlyTrashed()->findorFail($id);
+        $permanentDestroyedProject->forceDelete();
+
+        return redirect()->route('admin.projects.bin');
+    }
+
+    public function bin()
+    {
+        // if we are in front of a query builder we must use get() method
+        $projects = Project::onlyTrashed()->get();
+        return view('admin.projects.layouts.table', compact('projects'));
     }
 }

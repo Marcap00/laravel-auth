@@ -33,8 +33,9 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/{id}/edit', [AdminProjectController::class, 'edit'])->name('edit');
     Route::put('/{id}', [AdminProjectController::class, 'update'])->name('update');
     Route::delete('/{id}', [AdminProjectController::class, 'destroy'])->name('destroy');
-    Route::delete('/{id}/permanent-delete', [AdminProjectController::class, 'permanentDestroy'])->name('permanent-destroy');
-    Route::get('/{id}/restore', [AdminProjectController::class, 'restore'])->name('restore'); */
-
+    */
+    Route::get('/projects/bin', [AdminProjectController::class, 'bin'])->name('projects.bin');
     Route::resource('/projects', AdminProjectController::class);
+    Route::delete('/projects/{id}/permanent-delete', [AdminProjectController::class, 'permanentDestroy'])->name('projects.permanent-destroy');
+    Route::patch('/projects/{id}/restore', [AdminProjectController::class, 'restore'])->name('projects.restore');
 });
